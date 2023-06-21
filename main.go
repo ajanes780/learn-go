@@ -3,10 +3,20 @@ package main
 import "fmt"
 
 func main() {
-	card := newCard()
-	fmt.Println(card)
+	cards := []string{newCard(), newCard()}
+	cards = append(cards, "Six of Spades")
+
+	for i, card := range cards {
+		fmt.Println(i, card)
+	}
+	//fmt.Println(cards)
 }
 
 func newCard() string {
 	return "Five of diamonds"
 }
+
+/**
+* Array -  is always fixed length
+* Slice - is an array that can grow or shrink
+ */
