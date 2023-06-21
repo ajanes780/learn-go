@@ -1,10 +1,11 @@
 package main
 
-import "fmt"
-
 func main() {
 	cards := newDeck()
-	fmt.Println(cards.toString())
+	err := cards.saveToFile("My Cards")
+	if err != nil {
+		return
+	}
 
 }
 
