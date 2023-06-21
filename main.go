@@ -1,15 +1,11 @@
 package main
 
 func main() {
-	cards := deck{newCard(), newCard()}
+	cards := newDeck()
 	cards = append(cards, "Six of Spades")
 
 	cards.print()
 	//fmt.Println(cards)
-}
-
-func newCard() string {
-	return "Five of diamonds"
 }
 
 /**
