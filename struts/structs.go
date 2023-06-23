@@ -27,14 +27,27 @@ func main() {
 			zipcode: 90210,
 		},
 	}
-	jim.updateName("Aaron")
-	jim.print()
+	// creates a pointer to the value
+	jimPointer := &jim
+	jimPointer.updateName("Aaron")
+	jimPointer.print()
 }
 
-func (p person) print() {
+//// this is passed by value - copy from memory Go is a pass by value language
+//func (p person) print() {
+//	fmt.Printf("%+v", p)
+//}
+
+//func (p person) updateName(newFirstName string) {
+//	p.firstName = newFirstName
+//}
+
+// Uses a pointer to now it is passed by reference
+func (p *person) print() {
 	fmt.Printf("%+v", p)
 }
 
-func (p person) updateName(newFirstName string) {
+// Uses a pointer to now it is passed by reference
+func (p *person) updateName(newFirstName string) {
 	p.firstName = newFirstName
 }
