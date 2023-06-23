@@ -1,11 +1,12 @@
 package main
 
 func main() {
-	cards := newDeckFromFile("My Cards")
-
+	//cards := newDeckFromFile("My Cards")
+	//
+	////cards.print()
+	//cards.shuffle()
 	//cards.print()
-	cards.shuffle()
-	cards.print()
+
 }
 
 /**
