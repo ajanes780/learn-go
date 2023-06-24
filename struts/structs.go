@@ -27,10 +27,10 @@ func main() {
 			zipcode: 90210,
 		},
 	}
-	// creates a pointer to the value
-	jimPointer := &jim
-	jimPointer.updateName("Aaron")
-	jimPointer.print()
+	// & creates a variable and give us access to the memory address its pointing at
+
+	jim.updateName("Bobby")
+	jim.print()
 }
 
 //// this is passed by value - copy from memory Go is a pass by value language
@@ -42,12 +42,13 @@ func main() {
 //	p.firstName = newFirstName
 //}
 
-// Uses a pointer to now it is passed by reference
+// star * in front of a type is describing the type as pointer to the type
 func (p *person) print() {
 	fmt.Printf("%+v", p)
 }
 
 // Uses a pointer to now it is passed by reference
+// *pointer - give me direct access to the value at the memory address
 func (p *person) updateName(newFirstName string) {
-	p.firstName = newFirstName
+	(*p).firstName = newFirstName
 }
