@@ -3,23 +3,25 @@ package main
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 )
 
+type logWriter struct{}
+
 func main() {
 	resp, err := http.Get("https://www.google.com")
-	body, err := io.ReadAll(resp.Body)
-	err = resp.Body.Close()
-
-	if resp.StatusCode > 299 {
-		log.Fatalf("Response failed with status code: %d and\nbody: %s\n", resp.StatusCode, body)
-	}
+	lw := logWriter{}
+	io.Copy(lw, resp.Body)
 
 	if err != nil {
-		fmt.Println("Error: ", err)
+		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
-	fmt.Printf("%s", body)
+}
+
+func (logWriter) Write(bs []byte) (int, error) {
+	fmt.Println(string(bs))
+	fmt.Println("Just wrote this many bytes:", len(bs))
+	return len(bs), nil
 }
