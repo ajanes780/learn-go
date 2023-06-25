@@ -25,7 +25,12 @@ func main() {
 	// This syntax creates a loop for the range of the channel c.
 	for l := range c {
 
-		go checkLink(l, c)
+		// This is a function literal. It is a function that is not declared.
+		// this is the same as and anonymous function in javascript.
+		go func(l string) {
+			time.Sleep(5 * time.Second)
+			checkLink(l, c)
+		}(l)
 	}
 
 }
@@ -35,12 +40,10 @@ func checkLink(link string, c chan string) {
 
 	if err != nil {
 		fmt.Println(link, "might be down!")
-		time.Sleep(5 * time.Second)
 		c <- link
 		return
 	}
 
 	fmt.Println(link, "is up!")
-	time.Sleep(5 * time.Second)
 	c <- link
 }
