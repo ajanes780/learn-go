@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"strings"
@@ -14,8 +15,9 @@ func main() {
 	//c := resp.Header["Content-Type"]
 	ct := strings.Split(resp.Header["Content-Type"][0], ";")
 	fmt.Println(ct[0])
-	//lw := logWriter{}
-	//_, err = io.Copy(lw, resp.Body)
+
+	lw := logWriter{}
+	_, err = io.Copy(lw, resp.Body)
 
 	if err != nil {
 		fmt.Println("Error:", err)
