@@ -27,10 +27,10 @@ func main() {
 
 		// This is a function literal. It is a function that is not declared.
 		// this is the same as and anonymous function in javascript.
-		go func(l string) {
+		go (func(l string) {
 			time.Sleep(5 * time.Second)
 			checkLink(l, c)
-		}(l)
+		})(l)
 	}
 
 }
